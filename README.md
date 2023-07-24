@@ -28,6 +28,142 @@ allprojects {
 }
 ```
 
+## Usage
+
+
+AppCompatActivity. (From which activity you wanna acatually show your watermark, e.g: MainActivity) [Mandatory]
+Layout resource. (The layout which you wanna show as the watermark, e.g: R.layout.layout_water_mark) [Mandatory]
+Background color. ( e.g: R.color.deepRed. If you skip it then it will consider the background color of your defined layout resourc.) [Optional]
+Opacity. (Default opacity of background color is 50 if you don't set opacity manually.Best practice is never set it above 80 because it will decrease the transparent level of your background color, which might be cause not showing the main UI or content properly) [Optional]
+
+Java:
+
+```java
+
+AppWaterMarkBuilder.doConfigure()
+                .setAppCompatActivity(MainActivity.this)
+                .setWatermarkProperty(R.layout.layout_water_mark)
+		/* You can also set opacity or opacity with a default background color.
+		 * Just call like that ".setWatermarkProperty(R.layout.layout_water_mark, 40, R.color.colorAccent)" */
+		.showAlsoOutsideOfTheApp()/*Optional: Call it if anyone wanna show the watermark globally allover the other apps.*/
+                .showWatermarkAfterConfig(new WatermarkListener() { /*This callback is also optional here */
+                    @Override
+                    public void onSuccess() {
+                     Log.d(TAG, "Successfully showing water mark");
+                    }
+
+                    @Override
+                    public void onFailure(String message, Throwable throwable) {
+		     Log.d(TAG, "Failed: "+message");
+                    }
+
+                    @Override
+                    public void showLog(String log, @Nullable Throwable throwable) {
+ 		     Log.d(TAG, "Log: "+log");
+                    }
+                });
+Then you can hide and show it from any where in your app-
+  /* For hiding the watermark without callback*/
+  AppWaterMarkBuilder.hideWatermark() 
+ 
+  /* For hiding the watermark with callback*/
+  AppWaterMarkBuilder.hideWatermark(new WatermarkListener() {
+                    @Override
+                    public void onSuccess() {
+                     Log.d(TAG, "Successfully showing water mark");
+                    }
+
+                    @Override
+                    public void onFailure(String message, Throwable throwable) {
+		     Log.d(TAG, "Failed: "+message");
+                    }
+
+                    @Override
+                    public void showLog(String log, @Nullable Throwable throwable) {
+ 		     Log.d(TAG, "Log: "+log");
+                    }
+                })
+    
+    /* For showing the watermark without callback*/
+  AppWaterMarkBuilder.showWatermark() 
+ 
+  /* For showing the watermark with callback*/
+  AppWaterMarkBuilder.showWatermark(new WatermarkListener() {
+                    @Override
+                    public void onSuccess() {
+                     Log.d(TAG, "Successfully showing water mark");
+                    }
+
+                    @Override
+                    public void onFailure(String message, Throwable throwable) {
+		     Log.d(TAG, "Failed: "+message");
+                    }
+
+                    @Override
+                    public void showLog(String log, @Nullable Throwable throwable) {
+ 		     Log.d(TAG, "Log: "+log");
+                    }
+                })
+```
+
+Kotlin:
+
+```kotlin
+                 doConfigure()
+                .setAppCompatActivity(this@MainActivity)
+                .setWatermarkProperty(R.layout.layout_water_mark)
+		/* You can also set opacity or opacity with a default background color.
+		 * Just call like that ".setWatermarkProperty(R.layout.layout_water_mark, 40, R.color.colorAccent)" */
+                .showWatermarkAfterConfig(object : WatermarkListener { /*This callback is also optional here */
+                    override fun onSuccess() {
+                        Log.d(TAG, "Successfully showing water mark")
+                    }
+
+                    override fun onFailure(message: String?, throwable: Throwable?) {
+                        Log.d(TAG, "Failed: $message")
+                    }
+
+                    override fun showLog(log: String?, throwable: Throwable?) {
+                        Log.d(TAG, "Log: $log")
+                    }
+                })
+Then you can hide and show it from any where in your app-
+   /* For hiding the watermark without callback*/
+   AppWaterMarkBuilder.hideWatermark() 
+ 
+   /* For hiding the watermark with callback*/
+   AppWaterMarkBuilder.hideWatermark(new WatermarkListener() {object : WatermarkListener {
+                override fun onSuccess() {
+                    Log.d(MainActivity.TAG, "Successfully showing water mark")
+                }
+
+                override fun onFailure(message: String?, throwable: Throwable?) {
+                    Log.d(MainActivity.TAG, "Failed: $message")
+                }
+
+                override fun showLog(log: String?, throwable: Throwable?) {
+                    Log.d(MainActivity.TAG, "Log: $log")
+                }
+            })
+    
+   /* For showing the watermark without callback*/
+    AppWaterMarkBuilder.showWatermark() 
+ 
+   /* For showing the watermark with callback*/
+    AppWaterMarkBuilder.showWatermark(object : WatermarkListener {
+                override fun onSuccess() {
+                    Log.d(MainActivity.TAG, "Successfully showing water mark")
+                }
+
+                override fun onFailure(message: String?, throwable: Throwable?) {
+                    Log.d(MainActivity.TAG, "Failed: $message")
+                }
+
+                override fun showLog(log: String?, throwable: Throwable?) {
+                    Log.d(MainActivity.TAG, "Log: $log")
+                }
+            })
+```
 
 <h1 align="center">Privacy Policy</h1>
 
