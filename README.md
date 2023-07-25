@@ -1,5 +1,7 @@
 # Mohar - The image saviour
 
+[![Download from Play Store](https://img.shields.io/badge/Download%20on-Google%20Play-brightgreen.svg)](https://play.google.com/store/apps/details?id=me.enginestein.mohar)
+
 Mohar is not just an ordinary watermarking app; it's a powerful tool designed to safeguard your images with a plethora of customizable features for adding watermarks. With Mohar, your images are shielded with an extra layer of protection, ensuring that your creative work remains uniquely yours.
 
 What sets Mohar apart from the rest is its extensive range of advanced functionalities. Whether you want to add text-based watermarks, logos, or intricate designs, Mohar empowers you to do so effortlessly. You have complete control over the size, position, transparency, and style of your watermarks, allowing you to achieve the perfect blend of protection and aesthetic appeal.
